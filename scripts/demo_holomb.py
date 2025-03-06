@@ -155,7 +155,7 @@ stats = (
     .apply(
         lambda r:
             pd.Series({
-                'new': len(set(r['user_counts']) - set(r['exp_counts'])),
+                'new': len(set(r['user_counts']) - set(r['exp_counts'])) + r['user_counts']['CASH'],
                 'return': len(set(r['user_counts']) & {k for k, v in r['exp_counts'].items() if v == 1}),
                 'return_id': set(r['user_counts']) & {k for k, v in r['exp_counts'].items() if v == 1},
                 'repeat': len(set(r['user_counts']) & {k for k, v in r['exp_counts'].items() if v >= 2})
